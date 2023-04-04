@@ -85,10 +85,10 @@ void aGagnéDg(int tab[3][3])
   
 }
 
-int main(int argc, char** argv)
-{
-  return 0;
-}
+// int main(int argc, char** argv)
+// {
+//   return 0;
+// }
 
 // int main (int argc, char** argv)
 // {
@@ -117,18 +117,18 @@ int main(int argc, char** argv)
 
 
 
-Remake:
+//Remake:
 #include <stdio.h>
 #include <stdlib.h>
 
-struct joueur { /*OK*/
+struct joueurs { /*OK*/
   char prenom [50];
   int age;
   char symbole;
   int numero;
 };
 
-void initGrille(char tab[3][3]){
+void initiaGrille(char tab[3][3]){
   for (int i=0 ; i<3 ; i++){
     for (int j=0 ; j<3 ; j++){
       tab[i][j]=' ';
@@ -136,7 +136,7 @@ void initGrille(char tab[3][3]){
   }
 }
 
-void affGrille(char tab[3][3]){
+void affiGrille(char tab[3][3]){
 
   int j=0;
   int i=0;
@@ -201,8 +201,8 @@ int main(int argc, char** argv)
 {
   char morpion[3][3];
 
-  initGrille(morpion);
-  affGrille(morpion);
+  initiaGrille(morpion);
+  affiGrille(morpion);
   return 0;
 }
 
