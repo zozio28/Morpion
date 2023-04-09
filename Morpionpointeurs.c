@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Fonction qui permet d'allouer un tablau dynamique
 int** allouerTableau(int nb_lignes,int nb_colonnes){
     int** ptab = NULL;
     ptab = malloc(nb_colonnes*sizeof(int*));
@@ -10,6 +11,7 @@ int** allouerTableau(int nb_lignes,int nb_colonnes){
     return ptab;
 }
 
+//Procédure qui permet d'initialiser un tableau dynamique
 void initTableau(int** maGrille,int nb_lignes,int nb_colonnes){
     for (int i=0; i<nb_lignes; i++){
         for (int j=0; j<nb_colonnes; j++){
@@ -18,6 +20,7 @@ void initTableau(int** maGrille,int nb_lignes,int nb_colonnes){
     }
 }
 
+//Procédure qui permet d'afficher un tableau dynamique
 void afficherGrille(int** maGrille){
     for (int i=0; i<3; i++){
         printf("+---+---+---+ \n");
@@ -42,24 +45,23 @@ void afficherGrille(int** maGrille){
 }
 
 void joue(int** maGrille, int numeroJoueur,int i,int j){
+    maGrille[i][j]=numeroJoueur;
+}
 
+void tour2jeu(int** maGrille,int* joueur, int i, int j){
     do {
         printf("Veuillez entrez la ligne suivie de la ligne : ");
         scanf("%d", &i);
         printf("Veuillez entrer la colonne : ");
         scanf("%d", &j);
-    } while (((i > 2) && (i < 0)) || ((j > 2) && (j < 0)) || (maGrille[i][j]!=0));
+    } while (((i > 2) || (i < 0)) || ((j > 2) || (j < 0)) || (maGrille[i][j]!=0));
 
-    maGrille[i][j]=numeroJoueur;
-}
-
-void tour2jeu(int** maGrille,int joueur){
-    switch(joueur){
+    switch(*joueur){
         case 1 :
-            joueur = 2;
+            *joueur = 2;
             break;
         case 2 :
-            joueur = 1;
+            *joueur = 1;
             break;
     }
     
@@ -77,7 +79,7 @@ int main(){
     for (int i = 0; i<lignes*colonnes; i++){
         joue(tab,joueur,lignes,colonnes);
         afficherGrille(tab);
-        tour2jeu(tab,joueur);
+        tour2jeu(tab,joueur,lignes,colonnes);
     }
 
     free(tab);
