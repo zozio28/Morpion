@@ -48,13 +48,7 @@ void joue(int** maGrille, int numeroJoueur,int i,int j){
     maGrille[i][j]=numeroJoueur;
 }
 
-void tour2jeu(int** maGrille,int* joueur, int i, int j){
-    do {
-        printf("Veuillez entrez la ligne suivie de la ligne : ");
-        scanf("%d", &i);
-        printf("Veuillez entrer la colonne : ");
-        scanf("%d", &j);
-    } while (((i > 2) || (i < 0)) || ((j > 2) || (j < 0)) || (maGrille[i][j]!=0));
+void tour2jeu(int** maGrille,int* joueur){
 
     switch(*joueur){
         case 1 :
@@ -77,6 +71,12 @@ int main(){
     initTableau(tab,lignes,colonnes);
     afficherGrille(tab);
     for (int i = 0; i<lignes*colonnes; i++){
+        do {
+            printf("Veuillez entrez la ligne suivie de la ligne : ");
+            scanf("%d", &i);
+            printf("Veuillez entrer la colonne : ");
+            scanf("%d", &j);
+        } while (((i > 2) || (i < 0)) || ((j > 2) || (j < 0)) || (maGrille[i][j]!=0));
         joue(tab,joueur,lignes,colonnes);
         afficherGrille(tab);
         tour2jeu(tab,joueur,lignes,colonnes);
