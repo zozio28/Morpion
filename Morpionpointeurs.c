@@ -106,18 +106,16 @@ int main(){
     
     //Variables
     int** tab = NULL;
-    int lignes = 3;
-    int colonnes = 3;
     int joueur = 1;
     int j = 0;
     int nbCoups = 0;
 
     //alloue l'espace pour tab et initialise le tableau
-    tab = allouerTableau(lignes,colonnes);
-    initTableau(tab,lignes,colonnes);
+    tab = allouerTableau(TAILLE,TAILLE);
+    initTableau(tab,TAILLE,TAILLE);
 
     //boucle de jeu
-    for (int i = 0; i<lignes*colonnes; i++){
+    for (int i = 0; i<TAILLE*TAILLE; i++){
         //affiche la grille joue le coup donné par le joueur
         afficherGrille(tab);
         tour2jeu(tab,&joueur,&i,&j);
@@ -127,7 +125,7 @@ int main(){
             afficherGrille(tab); 
             printf("Joueur %d a gagné !\n", joueur);
             break;
-        } else if (nbCoups == lignes*colonnes) { // vérifie si la grille est remplie
+        } else if (nbCoups == TAILLE*TAILLE) { // vérifie si la grille est remplie
             afficherGrille(tab);
             printf("Match nul !\n");
             break;
