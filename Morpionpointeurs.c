@@ -7,8 +7,8 @@ int** allouerTableau(int nb_lignes,int nb_colonnes){
     int** ptab = NULL;
     ptab = malloc(nb_colonnes*sizeof(int*));
     for (int i=0; i<nb_colonnes; i++){
-        ptab[i] = malloc(nb_lignes*sizeof(int))
-;    }
+        ptab[i] = malloc(nb_lignes*sizeof(int));
+    }
     return ptab;
 }
 
@@ -57,6 +57,7 @@ void joue(int** maGrille, int numeroJoueur,int i,int j){
 
 //Procédure qui permet à un joueur de saisir les coordonnées de son pion
 void tour2jeu(int** maGrille, int* joueur, int* i, int* j) {
+    
     //demande au joueur de jouer tant que ses coordonnées sont inexactes
     do {
         printf("Joueur %d, veuillez entrer la ligne (0-2) : ", *joueur);
@@ -64,6 +65,7 @@ void tour2jeu(int** maGrille, int* joueur, int* i, int* j) {
         printf("Veuillez entrer la colonne (0-2) : ");
         scanf("%d", j);
     } while ((*i > 2) || (*i < 0) || (*j > 2) || (*j < 0) || (maGrille[*i][*j] != 0));
+    
     //change de joueur
     switch(*joueur){
         case 1 :
@@ -78,22 +80,26 @@ void tour2jeu(int** maGrille, int* joueur, int* i, int* j) {
 
 //Prédicat qui permet de tester si un joueur a gagné
 int gagne (int** maGrille, int joueur){
+
     // Vérification des lignes
     for (int i = 0; i < TAILLE; i++) {
         if (maGrille[i][0] == joueur && maGrille[i][1] == joueur && maGrille[i][2] == joueur) {
             return 1;
         }
     }
+
     // Vérification des colonnes
     for (int i = 0; i < TAILLE; i++) {
         if (maGrille[0][i] == joueur && maGrille[1][i] == joueur && maGrille[2][i] == joueur) {
             return 1;
         }
     }
+
     // Vérification de la diagonale haut-gauche vers bas-droite
     if (maGrille[0][0] == joueur && maGrille[1][1] == joueur && maGrille[2][2] == joueur) {
         return 1;
     }
+
     // Vérification de la diagonale bas-gauche vers haut-droite
     if (maGrille[2][0] == joueur && maGrille[1][1] == joueur && maGrille[0][2] == joueur) {
         return 1;
@@ -116,11 +122,13 @@ int main(){
 
     //boucle de jeu
     for (int i = 0; i<TAILLE*TAILLE; i++){
+
         //affiche la grille joue le coup donné par le joueur
         afficherGrille(tab);
         tour2jeu(tab,&joueur,&i,&j);
         joue(tab,joueur,i,j);
         nbCoups++;// incrémente le compteur de coups
+        
         if (gagne(tab,joueur)) { // vérifie si un joueur a gagné
             afficherGrille(tab); 
             printf("Joueur %d a gagné !\n", joueur);
