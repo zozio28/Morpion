@@ -1,4 +1,5 @@
 # Morpion
+Contient deux programmes de morpion, un avec pointeurs et un sans pointeurs
 
 ## PROGRAMME ##
 Lancer les programme dans le terminal grâce aux commandes suivantes
